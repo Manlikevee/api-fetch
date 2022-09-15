@@ -1,0 +1,23 @@
+
+<script>
+var apiStations = "https://api-ratp.pierre-grimaud.fr/v4/stations/metros/8";
+
+function req1() {
+  fetch(apiStations, {
+      method: "get"
+    })
+    .then(response => response.json())
+    .then(data => {
+      let allstations = data.result.stations;
+      let html = '';
+      for (var i = 0; i < allstations.length; i++) {
+        html += "<option value=" + allstations[i].slug + ">" + allstations[i].name + "</option>"
+      }
+      document.getElementById("subwaystation").innerHTML = html;
+    })
+}
+req1();
+</script>
+
+<select id="subwaystation">
+</select>
